@@ -12,7 +12,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@libsql/client": "^0.6.2",
+    "@libsql/client": "latest",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "nodemailer": "^8.0.5",
