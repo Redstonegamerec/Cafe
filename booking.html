@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Book your table at The Nook Café. Choose your date, time, and party size — it takes just 30 seconds.">
+  <title>Book a Table — The Nook Café</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body class="page-enter">
+
+  <!-- ==================== NAVBAR (Light) ==================== -->
+  <nav class="navbar navbar-light" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo" id="nav-logo-booking">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 14h16a6 6 0 0 1-6 6H8a2 2 0 0 1-2-2v-4z" fill="currentColor" opacity="0.8"/>
+          <path d="M22 14h2a4 4 0 0 1 0 8h-2" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path d="M8 22h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M10 25h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        The Nook
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#features">Why Us</a>
+        <a href="index.html#timeslots">Availability</a>
+      </div>
+
+      <div class="nav-cta">
+        <a href="index.html" class="btn btn-ghost" style="color: var(--text-secondary);">← Back to Home</a>
+      </div>
+
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu-overlay" id="mobile-overlay"></div>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="close-btn" id="mobile-close" aria-label="Close menu">✕</button>
+    <a href="index.html">Home</a>
+    <a href="index.html#features">Why Us</a>
+    <a href="index.html#vibes">Vibes</a>
+    <a href="index.html" class="btn btn-outline" style="margin-top: 16px;">← Back</a>
+  </div>
+
+  <!-- ==================== BOOKING FORM ==================== -->
+  <section class="booking-page">
+    <div class="booking-container">
+      <!-- Header -->
+      <div class="booking-header fade-in">
+        <p class="section-label">Reservation</p>
+        <h1>Book Your Table</h1>
+        <p>Pick your time and we'll have everything ready for you.</p>
+      </div>
+
+      <!-- Booking Card -->
+      <div class="booking-card fade-in" style="transition-delay: 0.1s;">
+        <!-- Progress -->
+        <div class="booking-progress" id="booking-progress">
+          <div class="progress-step active" id="step-1">1</div>
+          <div class="progress-line" id="line-1"></div>
+          <div class="progress-step" id="step-2">2</div>
+          <div class="progress-line" id="line-2"></div>
+          <div class="progress-step" id="step-3">3</div>
+        </div>
+
+        <form id="booking-form" autocomplete="off">
+          <!-- Step 1: Date & Time -->
+          <div class="form-step" id="form-step-1">
+            <div class="form-group">
+              <label class="form-label" for="booking-date">Date</label>
+              <input type="date" class="form-input" id="booking-date" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Select a Time Slot</label>
+              <div class="time-chips" id="time-chips">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <div id="seat-info-container"></div>
+
+            <div class="form-divider"></div>
+
+            <div class="form-group">
+              <label class="form-label">Number of Guests</label>
+              <div class="stepper">
+                <button type="button" class="stepper-btn" id="stepper-minus" aria-label="Decrease guests">−</button>
+                <span class="stepper-value" id="stepper-value">2</span>
+                <button type="button" class="stepper-btn" id="stepper-plus" aria-label="Increase guests">+</button>
+                <span class="stepper-label">people</span>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" id="btn-next-1">
+              Continue
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
+          <!-- Step 2: Personal Info -->
+          <div class="form-step" id="form-step-2" style="display: none;">
+            <div class="form-group">
+              <label class="form-label" for="booking-name">Your Name</label>
+              <input type="text" class="form-input" id="booking-name" placeholder="e.g. Rahul Sharma" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="booking-phone">Phone Number</label>
+              <input type="tel" class="form-input" id="booking-phone" placeholder="+91 98765 43210" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="booking-email">Email (optional)</label>
+              <input type="email" class="form-input" id="booking-email" placeholder="you@email.com">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="booking-notes">Special Requests (optional)</label>
+              <textarea class="form-input" id="booking-notes" placeholder="Birthday cake, window seat, etc." rows="3" style="resize: vertical; min-height: 80px;"></textarea>
+            </div>
+
+            <div style="display: flex; gap: 12px;">
+              <button type="button" class="btn btn-outline" id="btn-back-2" style="flex: 1;">← Back</button>
+              <button type="button" class="btn btn-primary" id="btn-next-2" style="flex: 2;">
+                Review Booking
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Review & Confirm -->
+          <div class="form-step" id="form-step-3" style="display: none;">
+            <div class="confirmation-details" id="review-details">
+              <!-- Populated by JS -->
+            </div>
+
+            <div style="display: flex; gap: 12px;">
+              <button type="button" class="btn btn-outline" id="btn-back-3" style="flex: 1;">← Edit</button>
+              <button type="submit" class="btn btn-primary" id="btn-confirm" style="flex: 2;">
+                Confirm Booking ✓
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <p>© 2026 The Nook Café. All rights reserved.</p>
+        <div>
+          <a href="#">Privacy</a> · <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

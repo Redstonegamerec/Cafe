@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your table at The Nook Café is confirmed! We look forward to seeing you.">
+  <title>Booking Confirmed — The Nook Café</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+
+  <!-- ==================== CONFIRMATION ==================== -->
+  <section class="confirmation-page">
+    <div class="confirmation-card" id="confirmation-card">
+      <div class="confirmation-icon">
+        <svg viewBox="0 0 24 24">
+          <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <h1>Your table is reserved 🎉</h1>
+      <p>We've saved your spot at The Nook. See you soon!</p>
+
+      <div class="confirmation-details" id="confirm-details">
+        <!-- Populated by JS from localStorage -->
+      </div>
+
+      <div class="confirmation-actions">
+        <a href="index.html" class="btn btn-outline" id="btn-go-home">Back to Home</a>
+        <a href="booking.html" class="btn btn-primary" id="btn-book-another">Book Another</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/app.js"></script>
+  <script>
+    // Load confirmation details from localStorage
+    document.addEventListener('DOMContentLoaded', () => {
+      const booking = JSON.parse(localStorage.getItem('nook_booking') || '{}');
+      const container = document.getElementById('confirm-details');
+
+      if (booking.name) {
+        container.innerHTML = `
+          <div class="detail-row">
+            <span class="label">Name</span>
+            <span class="value">${booking.name}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Date</span>
+            <span class="value">${booking.dateFormatted || booking.date}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Time</span>
+            <span class="value">${booking.time}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Guests</span>
+            <span class="value">${booking.guests} ${booking.guests === 1 ? 'person' : 'people'}</span>
+          </div>
+          ${booking.phone ? `<div class="detail-row"><span class="label">Phone</span><span class="value">${booking.phone}</span></div>` : ''}
+          ${booking.notes ? `<div class="detail-row"><span class="label">Requests</span><span class="value">${booking.notes}</span></div>` : ''}
+        `;
+      } else {
+        container.innerHTML = `
+          <div class="detail-row">
+            <span class="label" style="text-align: center; width: 100%; color: var(--text-secondary);">
+              No booking details found.<br>Try booking a table first!
+            </span>
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

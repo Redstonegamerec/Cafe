@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — The Nook Café</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <svg viewBox="0 0 32 32" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 14h16a6 6 0 0 1-6 6H8a2 2 0 0 1-2-2v-4z" fill="#C8A27C" opacity="0.8"/>
+        <path d="M22 14h2a4 4 0 0 1 0 8h-2" stroke="#C8A27C" stroke-width="2" fill="none"/>
+      </svg>
+      <h2>The Nook</h2>
+    </div>
+    <nav class="nav-links">
+      <a href="#" class="nav-link active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Dashboard
+      </a>
+      <a href="/" target="_blank" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Website
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="top-bar">
+      <h1>Live Bookings</h1>
+      <div class="live-indicator">
+        <div class="pulse"></div>
+        Live Connection
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-title">Total Bookings</div>
+        <div class="stat-value" id="stat-total-bookings">-</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Total Guests</div>
+        <div class="stat-value" id="stat-total-guests">-</div>
+      </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="data-card">
+      <div class="data-header">
+        <h3>Recent Reservations</h3>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Date & Time</th>
+            <th>Guests</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="bookings-tbody">
+          <!-- Populated by JS -->
+          <tr><td colspan="5" style="text-align: center; color: #9A9A9A;">Loading live data...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Table Management -->
+    <div class="data-card" style="margin-top: 40px; margin-bottom: 40px;">
+      <div class="data-header">
+        <h3>Manage Availability</h3>
+      </div>
+      <div class="slots-grid" id="slots-grid">
+         <div style="padding: 24px; text-align: center; color: #9A9A9A;">Loading table slots...</div>
+      </div>
+    </div>
+
+    <!-- Cancel Modal -->
+    <div id="cancel-modal" class="modal">
+      <div class="modal-content">
+        <h3>Cancel Booking</h3>
+        <p>Are you sure you want to cancel this booking and release the assigned tables?</p>
+        <div class="modal-actions">
+          <button id="modal-close" class="btn secondary">Nevermind</button>
+          <button id="modal-confirm" class="btn danger">Yes, Cancel</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

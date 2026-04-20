@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reserve your table instantly at The Nook Café — great food, great vibes, no waiting. Book online in seconds.">
+  <title>The Nook Café — Reserve Your Table Instantly</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo" id="nav-logo">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 14h16a6 6 0 0 1-6 6H8a2 2 0 0 1-2-2v-4z" fill="currentColor" opacity="0.8"/>
+          <path d="M22 14h2a4 4 0 0 1 0 8h-2" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path d="M8 22h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M10 25h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 8c0-2 1-3 1-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+          <path d="M16 7c0-2 1-3 1-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        </svg>
+        The Nook
+      </a>
+
+      <div class="nav-links" id="nav-links">
+        <a href="#features">Why Us</a>
+        <a href="#timeslots">Availability</a>
+        <a href="#vibes">Vibes</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="nav-cta">
+        <a href="booking.html" class="btn btn-primary" id="nav-book-btn">Book Table</a>
+      </div>
+
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu-overlay" id="mobile-overlay"></div>
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="close-btn" id="mobile-close" aria-label="Close menu">✕</button>
+    <a href="#features">Why Us</a>
+    <a href="#timeslots">Availability</a>
+    <a href="#vibes">Vibes</a>
+    <a href="#contact">Contact</a>
+    <a href="booking.html" class="btn btn-primary">Book Table</a>
+  </div>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="images/hero.png" alt="Warm, aesthetic cafe interior with people enjoying coffee" />
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content container">
+      <div class="fade-in">
+        <p class="section-label" style="color: var(--accent-light);">Welcome to The Nook</p>
+        <h1>Reserve Your<br>Table <span>Instantly</span></h1>
+        <p>Enjoy great food, great vibes, and zero waiting. Book your perfect spot in seconds.</p>
+        <div class="hero-actions">
+          <a href="booking.html" class="btn btn-primary btn-lg" id="hero-book-btn">
+            Book a Table
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#vibes" class="btn btn-ghost" style="color: rgba(255,255,255,0.8);">
+            See the Vibe →
+          </a>
+        </div>
+
+        <div class="live-context-cards">
+          <div class="live-context-card">
+            <div class="live-context-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <span class="live-context-text">Live Availability Today</span>
+          </div>
+          <div class="live-context-card">
+            <div class="live-context-icon">
+              <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="live-context-text">Evening slots filling fast</span>
+          </div>
+          <div class="live-context-card">
+            <div class="live-context-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <span class="live-context-text">Peak time: 7PM – 9PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- ==================== QUICK BOOKING STRIP ==================== -->
+  <section class="quick-booking-container">
+    <div class="container fade-in">
+      <form id="quick-booking-form" class="booking-strip">
+        
+        <div class="strip-item">
+          <label class="strip-label">Date</label>
+          <input type="date" class="strip-date-input" id="strip-date" required>
+        </div>
+
+        <div class="strip-item" style="flex-grow: 1;">
+          <label class="strip-label">Time</label>
+          <div class="strip-time-scroll" id="strip-time-scroll">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="strip-item">
+          <label class="strip-label">Guests</label>
+          <div class="strip-stepper">
+            <button type="button" class="strip-stepper-btn" id="strip-stepper-minus" aria-label="Decrease guests">−</button>
+            <span class="strip-stepper-value" id="strip-stepper-value">2</span>
+            <button type="button" class="strip-stepper-btn" id="strip-stepper-plus" aria-label="Increase guests">+</button>
+          </div>
+        </div>
+
+        <div class="strip-cta">
+          <button type="button" class="btn btn-primary" id="strip-btn-check">
+            Check Availability
+          </button>
+        </div>
+      </form>
+      
+      <!-- Trust Elements -->
+      <div class="trust-elements fade-in" style="transition-delay: 0.1s;">
+        <div class="trust-item star">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          4.8/5 (500+ Reviews)
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          42 Brew Lane, Koramangala
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 98765 43210
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURES ==================== -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Why Choose Us</p>
+        <h2>Booking Made Effortless</h2>
+        <p>No calls, no hassle. Just pick your time and show up.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card fade-in">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Instant Booking</h3>
+          <p>Reserve your table in under 30 seconds. No phone calls needed.</p>
+        </div>
+
+        <div class="feature-card fade-in" style="transition-delay: 0.1s;">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>No Waiting</h3>
+          <p>Your table is ready when you arrive. Walk in and sit down.</p>
+        </div>
+
+        <div class="feature-card fade-in" style="transition-delay: 0.2s;">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/></svg>
+          </div>
+          <h3>Easy Cancellation</h3>
+          <p>Plans changed? Cancel or modify anytime — completely free.</p>
+        </div>
+
+        <div class="feature-card fade-in" style="transition-delay: 0.3s;">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>Real-time Availability</h3>
+          <p>See live seat availability and book only when it suits you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TIME SLOTS ==================== -->
+  <section class="time-slots" id="timeslots">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Today's Availability</p>
+        <h2>Popular Time Slots</h2>
+        <p>Grab your favourite time before it fills up</p>
+      </div>
+
+      <div class="slots-scroll" id="slots-scroll">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== VIBES ==================== -->
+  <section class="vibes" id="vibes">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">The Experience</p>
+        <h2>Feel The Vibe</h2>
+        <p>More than just coffee — it's an experience</p>
+      </div>
+
+      <div class="vibes-grid">
+        <div class="vibes-card fade-in">
+          <img src="images/hero.png" alt="Cozy cafe interior" />
+          <div class="vibes-card-overlay">
+            <p>☕ Cozy Interiors</p>
+          </div>
+        </div>
+        <div class="vibes-card fade-in" style="transition-delay: 0.1s;">
+          <img src="images/food.png" alt="Beautiful brunch plate" />
+          <div class="vibes-card-overlay">
+            <p>🍳 Artisan Brunch</p>
+          </div>
+        </div>
+        <div class="vibes-card fade-in" style="transition-delay: 0.2s;">
+          <img src="images/ambiance.png" alt="Outdoor cafe patio" />
+          <div class="vibes-card-overlay">
+            <p>🌿 Outdoor Patio</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA ==================== -->
+  <section class="cta-section">
+    <div class="container fade-in">
+      <p class="section-label">Ready?</p>
+      <h2>Your Perfect Table Awaits</h2>
+      <p>Book now and skip the queue. It takes less than a minute.</p>
+      <a href="booking.html" class="btn btn-primary btn-lg" id="cta-book-btn">
+        Reserve Now
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 14h16a6 6 0 0 1-6 6H8a2 2 0 0 1-2-2v-4z" fill="currentColor" opacity="0.8"/>
+              <path d="M22 14h2a4 4 0 0 1 0 8h-2" stroke="currentColor" stroke-width="2" fill="none"/>
+              <path d="M8 22h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M10 25h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            The Nook
+          </a>
+          <p>A cozy corner in the city where great coffee meets good company. Reserve your spot and enjoy the vibe.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="#features">Why Us</a>
+          <a href="#timeslots">Availability</a>
+          <a href="#vibes">Our Vibe</a>
+          <a href="booking.html">Book Table</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Hours</h4>
+          <a href="#">Mon–Fri: 8am – 10pm</a>
+          <a href="#">Saturday: 9am – 11pm</a>
+          <a href="#">Sunday: 9am – 9pm</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="tel:+919876543210">+91 98765 43210</a>
+          <a href="mailto:hello@thenook.cafe">hello@thenook.cafe</a>
+          <a href="#">42 Brew Lane, Koramangala<br>Bangalore 560034</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 The Nook Café. All rights reserved.</p>
+        <div>
+          <a href="#">Privacy</a> · <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky Mobile CTA -->
+  <div class="sticky-cta" id="sticky-cta">
+    <a href="booking.html" class="btn btn-primary" id="sticky-book-btn">Book a Table — It's Quick ⚡</a>
+  </div>
+
+  <!-- Application Script -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
