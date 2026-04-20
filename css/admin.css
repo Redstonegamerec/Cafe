@@ -5,19 +5,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --white: #13151a;         /* Redefined as dark surface */
-  --bg-soft: #0a0b0e;       /* Redefined as deep background */
-  --accent: #E5A93D;
-  --text-primary: #f0f0f0;
-  --text-secondary: #9aa0a6;
+  /* LIGHT MODE (DEFAULT) */
+  --white: #FFFFFF;
+  --bg-soft: #FAFAFA;
+  --accent: #E19E30;
+  --text-primary: #121212;
+  --text-secondary: #5f6368;
   --radius-md: 12px;
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.5);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
   
   --sidebar-w: 260px;
-  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] {
+  /* DARK MODE */
+  --white: #1A1A1A;
+  --bg-soft: #121212;
+  --accent: #E5A93D;
+  --text-primary: #FFFFFF;
+  --text-secondary: #E0E0E0;
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --border-subtle: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -96,6 +109,38 @@ a { text-decoration: none; color: inherit; }
 
 .top-bar h1 {
   font-size: 2rem;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid var(--border-subtle);
+}
+
+.theme-toggle:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  transition: transform 0.5s ease;
+}
+
+[data-theme="dark"] .theme-toggle svg {
+  transform: rotate(360deg);
 }
 
 .live-indicator {

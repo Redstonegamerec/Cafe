@@ -7,29 +7,60 @@
 
 /* ---- CSS Variables ---- */
 :root {
-  --white: #13151a;         /* Redefined as dark surface */
-  --bg-soft: #0a0b0e;       /* Redefined as deep background */
+  /* LIGHT MODE (DEFAULT) */
+  --white: #FFFFFF;
+  --bg-soft: #FAFAFA;
+  --accent: #E19E30;
+  --accent-dark: #C68E2F;
+  --accent-light: #F4CA78;
+  --text-primary: #121212;
+  --text-secondary: #5f6368;
+  --text-light: #9aa0a6;
+  --green: #2E7D32;
+  --green-bg: rgba(76, 175, 80, 0.1);
+  --orange: #E65100;
+  --orange-bg: rgba(255, 152, 0, 0.1);
+  --grey: #F0F0F0;
+  --grey-bg: #E8E8E8;
+  
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+  --shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.15), 0 0 20px rgba(225, 158, 48, 0.1);
+  --border-glow: rgba(225, 158, 48, 0.3);
+}
+
+[data-theme="dark"] {
+  /* DARK MODE */
+  --white: #1A1A1A;
+  --bg-soft: #121212;
   --accent: #E5A93D;
   --accent-dark: #C68E2F;
   --accent-light: #F4CA78;
-  --text-primary: #f0f0f0;
-  --text-secondary: #9aa0a6;
-  --text-light: #5f6368;
+  --text-primary: #FFFFFF;
+  --text-secondary: #E0E0E0;
+  --text-light: #A0A0A0;
   --green: #4ade80;
-  --green-bg: rgba(74, 222, 128, 0.1);
+  --green-bg: rgba(74, 222, 128, 0.15);
   --orange: #fb923c;
-  --orange-bg: rgba(251, 146, 60, 0.1);
+  --orange-bg: rgba(251, 146, 60, 0.15);
   --grey: #2e3035;
   --grey-bg: #1e2025;
   
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --glass-bg: rgba(19, 21, 26, 0.7);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(26, 26, 26, 0.85);
   
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.5);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.6);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.7);
-  --shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(229, 169, 61, 0.1);
-  
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(229, 169, 61, 0.15);
+  --border-glow: rgba(229, 169, 61, 0.4);
+}
+
+:root {
   --radius-sm: 12px;
   --radius-md: 16px;
   --radius-lg: 20px;
@@ -282,6 +313,43 @@ h3 {
 
 .nav-links a:hover::after {
   width: 100%;
+}
+
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.theme-toggle:hover {
+  background: var(--grey-bg);
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  transition: transform 0.5s ease;
+}
+
+[data-theme="dark"] .theme-toggle svg {
+  transform: rotate(360deg);
 }
 
 .nav-cta .btn {

@@ -7,6 +7,10 @@
   <title>The Nook Café — Reserve Your Table Instantly</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+  <script>
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  </script>
 </head>
 <body>
 
@@ -33,6 +37,10 @@
       </div>
 
       <div class="nav-cta">
+        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle dark mode">
+          <!-- SVG icon will be toggled by JS -->
+          <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
         <a href="booking.html" class="btn btn-primary" id="nav-book-btn">Book Table</a>
       </div>
 

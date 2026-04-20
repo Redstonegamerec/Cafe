@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard — The Nook Café</title>
   <link rel="stylesheet" href="css/admin.css">
+  <script>
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  </script>
 </head>
 <body>
 
@@ -33,9 +37,14 @@
   <main class="main-content">
     <div class="top-bar">
       <h1>Live Bookings</h1>
-      <div class="live-indicator">
-        <div class="pulse"></div>
-        Live Connection
+      <div class="live-indicator-container" style="display: flex; align-items: center; gap: 16px;">
+        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle dark mode">
+          <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <div class="live-indicator">
+          <div class="pulse"></div>
+          Live Connection
+        </div>
       </div>
     </div>
 
