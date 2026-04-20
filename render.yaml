@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: cafe-booking-system
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    disk:
+      name: sqlite-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: DB_PATH
+        value: /data/database.sqlite
+      - key: NODE_ENV
+        value: production
+      - key: ADMIN_USER
+        value: admin # You can change this in the Render dashboard later
+      - key: ADMIN_PASS
+        value: admin123 # You can change this in the Render dashboard later

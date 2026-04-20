@@ -25,11 +25,33 @@ const io = new Server(server);
 
 app.use(cors());
 app.use(express.json());
+
+// Basic Auth Middleware for Admin Routes
+const adminAuth = (req, res, next) => {
+    const b64auth = (req.headers.authorization || '').split(' ')[1] || '';
+    const [login, password] = Buffer.from(b64auth, 'base64').toString().split(':');
+
+    // Make sure to use environment variables in production!
+    const adminUser = process.env.ADMIN_USER || 'admin';
+    const adminPass = process.env.ADMIN_PASS || 'password123';
+
+    if (login && password && login === adminUser && password === adminPass) {
+        return next();
+    }
+
+    res.set('WWW-Authenticate', 'Basic realm="Admin Panel"');
+    res.status(401).send('Authentication required. Please log in.');
+};
+
+// Protect the admin HTML page
+app.use('/admin.html', adminAuth);
+
 app.use(express.static(__dirname));
 
-const db = new sqlite3.Database('./database.sqlite', (err) => {
+const dbPath = process.env.DB_PATH || './database.sqlite';
+const db = new sqlite3.Database(dbPath, (err) => {
     if (err) console.error('Database connection error:', err);
-    else console.log('Connected to SQLite database.');
+    else console.log(`Connected to SQLite database at ${dbPath}.`);
 });
 
 // Initialize database schema
@@ -180,14 +202,14 @@ app.post('/api/bookings', (req, res) => {
     });
 });
 
-app.get('/api/bookings', (req, res) => {
+app.get('/api/bookings', adminAuth, (req, res) => {
     db.all('SELECT * FROM bookings ORDER BY id DESC', (err, rows) => {
         if (err) res.status(500).json({error: err.message});
         else res.json(rows);
     });
 });
 
-app.put('/api/bookings/:id/cancel', (req, res) => {
+app.put('/api/bookings/:id/cancel', adminAuth, (req, res) => {
     const bookingId = req.params.id;
     
     // 1. Get the booking to find its slot time and tableIds
@@ -228,7 +250,7 @@ app.put('/api/bookings/:id/cancel', (req, res) => {
     });
 });
 
-app.post('/api/slots/:slotId/table/:tableId', (req, res) => {
+app.post('/api/slots/:slotId/table/:tableId', adminAuth, (req, res) => {
     const { status } = req.body; // 'available', 'booked', or 'blocked'
     db.get(`SELECT id, tables FROM slots WHERE id = ?`, [req.params.slotId], (err, slot) => {
         if (slot) {
@@ -256,7 +278,7 @@ app.post('/api/slots/:slotId/table/:tableId', (req, res) => {
     });
 });
 
-app.get('/api/stats', (req, res) => {
+app.get('/api/stats', adminAuth, (req, res) => {
     db.get('SELECT count(*) as totalBookings FROM bookings', (err, row1) => {
         db.all('SELECT time, guests FROM bookings', (err, rows) => {
             const totalGuests = rows.reduce((acc, curr) => acc + curr.guests, 0);
@@ -265,7 +287,7 @@ app.get('/api/stats', (req, res) => {
     });
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
